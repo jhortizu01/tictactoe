@@ -1,12 +1,13 @@
 
-
 html {
   border: solid black;
   margin: 0px;
+  padding: 0px;
 }
 
 body {
-border: solid black;
+
+  border: solid black;
   display: flex;
   height: 98vh;
   margin: 0px;
@@ -41,40 +42,43 @@ h2 {
   padding-right: 5px;
 }
 
-.game-board {
-  border: solid black;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: auto;
-  align-content: start
-  height: 100%;
-  width: 100%;
-}
+  .game-board {
+    border: solid black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: auto;
+    align-content: start;
+    height: 100%;
+    width: 100%;
+  }
+
+
 
 .game-square-one {
   border-right: solid white;
   border-bottom: solid white;
-  height: 150px;
-  width: 150px;
+  height: 25%;
+  width: 25%;
 }
 
 .game-square-two{
   border-bottom: solid white;
-  height: 150px;
-  width: 150px;
+  height: 25%;
+  width: 25%;
 }
 
 .game-square-three{
   border-right: solid white;
-  height: 150px;
-  width: 150px;
+  height: 25%;
+  width: 25%;
 }
 
 .game-square-four {
-  height: 150px;
-  width: 150px;
+
+  height: 25%;
+  width: 25%;
 }
 
 .player {
