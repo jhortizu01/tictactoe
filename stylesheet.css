@@ -1,0 +1,84 @@
+
+
+html {
+  border: solid black;
+  margin: 0px;
+}
+
+body {
+border: solid black;
+  display: flex;
+  height: 95vh;
+  margin: 0px;
+  font-family: 'Indie Flower', cursive;
+  color: white;
+  }
+
+section {
+  border: solid black;
+  order: : 3px solid black;
+  display: flex;
+  justify-content: center;
+  width: 625px;
+  background-image: url("https://user-images.githubusercontent.com/21073095/121460630-803b0500-c96a-11eb-9eb8-683299ba6f74.jpeg");
+}
+
+main {
+border: solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: column;
+  align-items: center;
+  width: 100%;
+  background-color: #13A7D7;
+  font-size: 30px;
+}
+
+.game-board {
+  border: solid black;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: auto;
+  align-content: start
+  height: 100%;
+  width: 100%;
+}
+
+.game-square-one {
+  border-right: solid white;
+  border-bottom: solid white;
+  height: 150px;
+  width: 150px;
+}
+
+.game-square-two{
+  border-bottom: solid white;
+  height: 150px;
+  width: 150px;
+}
+
+.game-square-three{
+  border-right: solid white;
+  height: 150px;
+  width: 150px;
+}
+
+.game-square-four {
+  height: 150px;
+  width: 150px;
+}
+
+.player-one {
+background-color: #cccccc;
+}
+
+.fish-guy {
+  width: 110px;
+  height: 120px;
+}
+.cat-in-the-hat {
+  width: 100px;
+  height: 120px;
+}
