@@ -42,6 +42,9 @@ h2 {
   padding-right: 5px;
 }
 
+.game-title {
+  height: 200px;
+}
   .game-board {
     border: solid black;
     display: flex;
