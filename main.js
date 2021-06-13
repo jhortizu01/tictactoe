@@ -21,14 +21,17 @@ gameBoard.addEventListener('click', playGame)
 window.addEventListener('load', showPlayer)
 
 function showPlayer() {
-  whosTurn.innerText = `It's ${game.turn}'s Turn`
+  game.nextTurn()
+  whosTurn.innerText = `${game.turn} get's to start!`
+  game.nextTurn()
+
 }
 
 
 function playGame(){
-  game.nextTurn();
-  whosTurn.innerText = `It's ${game.turn}'s Turn`
 
+  whosTurn.innerText = `It's ${game.turn}'s Turn`
+game.nextTurn()
   console.log(event.target.id)
 
     if (event.target.id === '0'){

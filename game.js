@@ -6,10 +6,11 @@ class Game {
     this.playerOne = new Player("one", "🐈‍⬛");
     this.playerTwo = new Player("two", "🍣");
     this.turn = this.playerOne.gamePiece
+
   }
 
   takeTurn(i) {
-    if (this.gameBoard[i]) {
+    if (this.gameBoard[i] === "") {
       return;
     }
     this.gameBoard[i] = this.turn;
@@ -32,7 +33,7 @@ class Game {
     [3, 4, 5],
     [6, 7, 8],
     [0, 3, 6],
-    [1, 4, 5],
+    [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6]
@@ -57,7 +58,7 @@ fishStatus() {
    [3, 4, 5],
    [6, 7, 8],
    [0, 3, 6],
-   [1, 4, 5],
+   [1, 4, 7],
    [2, 5, 8],
    [0, 4, 8],
    [2, 4, 6]
