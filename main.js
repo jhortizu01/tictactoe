@@ -5,6 +5,8 @@ var game = new Game();
 
 var gameBoard = document.getElementById('gameBoard')
 var whosTurn = document.getElementById('whosTurn')
+var playerOne = document.getElementById('playerOne')
+var playerTwo = document.getElementById('playerTwo')
 var zero = document.getElementById('0')
 var one = document.getElementById('1')
 var two = document.getElementById('2')
@@ -31,8 +33,8 @@ function showPlayer() {
 function playGame(){
 
   whosTurn.innerText = `It's ${game.turn}'s Turn`
-game.nextTurn()
-  console.log(event.target.id)
+  game.nextTurn()
+
 
     if (event.target.id === '0'){
      zero.innerText = `${game.turn}`
@@ -42,6 +44,9 @@ game.nextTurn()
      console.log(game.fishPosition())
      console.log(game.catStatus())
      console.log(game.fishStatus())
+     catWins()
+     fishWins()
+     game.draw()
    } if (event.target.id === '1'){
     one.innerText = `${game.turn}`
     game.takeTurn(1)
@@ -51,15 +56,21 @@ game.nextTurn()
     console.log(game.fishPosition())
     console.log(game.catStatus())
     console.log(game.fishStatus())
+    catWins()
+    fishWins()
+    game.draw()
   } if (event.target.id === '2'){
    two.innerText = `${game.turn}`
    game.takeTurn(2)
-    game.nextTurn()
+   game.nextTurn()
    console.log(game.turn)
    console.log(game.catPosition())
    console.log(game.fishPosition())
    console.log(game.catStatus())
    console.log(game.fishStatus())
+   catWins()
+   fishWins()
+   console.log(game.draw())
   } if (event.target.id === '3'){
    three.innerText = `${game.turn}`
    game.takeTurn(3)
@@ -69,6 +80,9 @@ game.nextTurn()
    console.log(game.fishPosition())
    console.log(game.catStatus())
    console.log(game.fishStatus())
+   catWins()
+   fishWins()
+   console.log(game.draw())
   } if (event.target.id === '4'){
    four.innerText = `${game.turn}`
    game.takeTurn(4)
@@ -78,6 +92,9 @@ game.nextTurn()
    console.log(game.fishPosition())
    console.log(game.catStatus())
    console.log(game.fishStatus())
+   catWins()
+   fishWins()
+   console.log(game.draw())
   } if (event.target.id === '5'){
    five.innerText = `${game.turn}`
    game.takeTurn(5)
@@ -87,15 +104,21 @@ game.nextTurn()
    console.log(game.fishPosition())
    console.log(game.catStatus())
    console.log(game.fishStatus())
+   catWins()
+   fishWins()
+   console.log(game.draw())
   } if (event.target.id === '6'){
    six.innerText = `${game.turn}`
    game.takeTurn(6)
-    game.nextTurn()
+   game.nextTurn()
    console.log(game.turn)
    console.log(game.catPosition())
    console.log(game.fishPosition())
    console.log(game.catStatus())
    console.log(game.fishStatus())
+   catWins()
+   fishWins()
+    console.log(game.draw())
   } if (event.target.id === '7'){
    seven.innerText = `${game.turn}`
    game.takeTurn(7)
@@ -105,14 +128,42 @@ game.nextTurn()
    console.log(game.fishPosition())
    console.log(game.catStatus())
    console.log(game.fishStatus())
+   catWins()
+   fishWins()
+    game.draw()
   } if (event.target.id === '8'){
    eight.innerText = `${game.turn}`
    game.takeTurn(8)
-    game.nextTurn()
+   game.nextTurn()
    console.log(game.turn)
    console.log(game.catPosition())
    console.log(game.fishPosition())
    console.log(game.catStatus())
    console.log(game.fishStatus())
+   catWins()
+   fishWins()
+  console.log(game.draw())
   }
+}
+
+function catWins(){
+  catWinner = game.catStatus()
+  if (catWinner === "cat win") {
+    playerOne.innerText += `${game.playerOneCounter}`
+    game.playerOne.saveWinsToStorage()
+
+  }
+}
+
+function fishWins(){
+  fishWinner = game.fishStatus()
+  if (fishWinner === "fish win")
+  playerTwo.innerText += `${game.playerTwoCounter}`
+  game.playerTwo.saveWinsToStorage()
+}
+
+function clearBoard() {
+  window.setTimeout(resetGame, 2 * 1000);
+  game.reset();
+  
 }

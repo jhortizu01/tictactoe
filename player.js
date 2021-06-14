@@ -2,16 +2,18 @@ class Player {
   constructor(playerNumber, gamePiece, wins) {
     this.playerNumber = playerNumber;
     this.gamePiece = gamePiece;
-    this.wins = [];
+    this.wins = 0;
   }
 
+
   saveWinsToStorage() {
-    var winner = JSON.stringify([]);
-    if (!JSON.parse(localStorage.getItem('gameWins'))) {
-      localStorage.setItem('gameWins', wins)
-      //put game wins in local storage
-    }
+  if (this.playerNumber === 'one') {
+    localStorage.setItem('player1 wins', JSON.stringify(this.wins))
+  } else if (this.playerNumber === 'two') {
+    localStorage.setItem('player2 wins', JSON.stringify(this.wins))
   }
+}
+
 
 
 

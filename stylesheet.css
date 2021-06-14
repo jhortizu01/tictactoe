@@ -42,6 +42,11 @@ h2 {
   padding-right: 5px;
 }
 
+h3 {
+color:  #13A7D7;
+font-size: 70px;
+}
+
 .game-title {
   height: 200px;
 }
@@ -58,30 +63,35 @@ h2 {
   }
 
 
-.game-square-one {
-  border-right: solid white;
-  border-bottom: solid white;
+.game-square-one,
+.game-square-two,
+.game-square-three,
+.game-square-four{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 25%;
   width: 25%;
+  font-size: 70px;
+}
+
+
+.game-square-one{
+  border-right: solid white;
+  border-bottom: solid white;
+
 }
 
 .game-square-two{
   border-bottom: solid white;
-  height: 25%;
-  width: 25%;
+
 }
 
 .game-square-three{
   border-right: solid white;
-  height: 25%;
-  width: 25%;
+
 }
 
-.game-square-four {
-
-  height: 25%;
-  width: 25%;
-}
 
 .player {
   display: flex;

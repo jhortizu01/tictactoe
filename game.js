@@ -5,6 +5,8 @@ class Game {
     this.gameBoard = gameArray.fill(null);
     this.playerOne = new Player("one", "🐈‍⬛");
     this.playerTwo = new Player("two", "🍣");
+    this.playerOneCounter = -1
+    this.playerTwoCounter = -1
     this.turn = this.playerOne.gamePiece
 
   }
@@ -44,11 +46,15 @@ class Game {
   var stringifiedWin = JSON.stringify(catPosition)
 
     if (stringifiedWinningCombo.includes(stringifiedWin)){
+      this.playerOneCounter++
+      this.catWin(playerOne)
       return "cat win"
+    } else if (catPosition.length < 4){
+      return
     } else {
       return "cat lose"
     }
-    return null
+
   }
 
 
@@ -70,7 +76,11 @@ fishStatus() {
 
   for (var i = 0; i < winningCombo.length; i++) {
     if (stringifiedWinningCombo.includes(stringifiedWin)){
+      this.playerTwoCounter++
+      this.fishWin(playerTwo)
       return "fish win"
+    } else if (fishPosition.length < 4){
+      return
     } else {
       return "fish lose"
     }
@@ -101,6 +111,22 @@ fishPosition() {
   return whereOnSquare
 }
 
+draw() {
+  var fishStatus = this.fishStatus();
+  var catStatus = this.catStatus();
+
+  if (fishStatus === "fish lose" && catStatus === "cat lose") {
+    console.log("draw")
+  }
+}
+
+catWin(playerOne) {
+  this.playerOne.wins += 1
+}
+
+fishWin(playerTwo) {
+  this.playerTwo.wins += 1
+}
 resetGame(){
   this.gameBoard = gameArray.fill(null);
 }
