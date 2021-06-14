@@ -28,6 +28,9 @@ game.playerOne.retrieveWinsFromStorage()
 game.playerTwo.retrieveWinsFromStorage()
 playerOne.innerText = `${playerOne.wins}`
 playerTwo.innerText = `${playerTwo.wins}`
+// game.playerOne.saveWinsToStorage()
+// game.playerTwo.saveWinsToStorage()
+
 showPlayer()
 }
 
@@ -171,9 +174,8 @@ function catWins(){
   catWinner = game.catStatus()
   if (catWinner === "cat win") {
     game.playerOne.wins++
-    game.playerOneCounter++
     game.playerOne.saveWinsToStorage()
-    game.playerOne.retrieveWinsFromStorage()
+   game.playerOne.retrieveWinsFromStorage()
     playerOne.innerText = `${playerOne.wins}`
     whosTurn.innerText = '🐈‍⬛ Wins!'
     clearBoard();

@@ -17,12 +17,11 @@ class Player {
 retrieveWinsFromStorage() {
    if (this.playerNumber === 'one') {
      playerOne.wins = (JSON.parse(localStorage.getItem('player1 wins')) || 0)
+     this.wins = playerOne.wins
    } else if (this.playerNumber === 'two') {
      playerTwo.wins = (JSON.parse(localStorage.getItem('player2 wins')) || 0)
+     this.wins = playerTwo.wins
    }
  }
-
-
-
 
 }

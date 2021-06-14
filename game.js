@@ -5,8 +5,6 @@ class Game {
     this.gameBoard = gameArray.fill(null);
     this.playerOne = new Player("one", "🐈‍⬛");
     this.playerTwo = new Player("two", "🍣");
-    this.playerOneCounter = 0
-    this.playerTwoCounter = 0
     this.turn = this.playerOne.gamePiece
 
   }
