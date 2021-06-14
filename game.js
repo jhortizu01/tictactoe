@@ -5,8 +5,8 @@ class Game {
     this.gameBoard = gameArray.fill(null);
     this.playerOne = new Player("one", "🐈‍⬛");
     this.playerTwo = new Player("two", "🍣");
-    this.playerOneCounter = -1
-    this.playerTwoCounter = -1
+    this.playerOneCounter = 0
+    this.playerTwoCounter = 0
     this.turn = this.playerOne.gamePiece
 
   }
@@ -46,8 +46,6 @@ class Game {
   var stringifiedWin = JSON.stringify(catPosition)
 
     if (stringifiedWinningCombo.includes(stringifiedWin)){
-      this.playerOneCounter++
-      this.catWin(playerOne)
       return "cat win"
     } else if (catPosition.length < 4){
       return
@@ -70,14 +68,19 @@ fishStatus() {
    [2, 4, 6]
  ]
 
+//  if ( this.fishPosition.includes(this.winningCombo[i][0]) || this.fishPosition.includes(this.winningCombo[i][1]) || this.fishPosition.includes(this.winningCombo[i][2]) ) {
+//
+// }
+
   var fishPosition = this.fishPosition();
-  var stringifiedWinningCombo = JSON.stringify(winningCombo);
-  var stringifiedWin = JSON.stringify(fishPosition)
+  // var stringifiedWinningCombo = JSON.stringify(winningCombo);
+  // var stringifiedWin = JSON.stringify(fishPosition)
 
   for (var i = 0; i < winningCombo.length; i++) {
-    if (stringifiedWinningCombo.includes(stringifiedWin)){
-      this.playerTwoCounter++
-      this.fishWin(playerTwo)
+    var stringifiedWinningCombo = JSON.stringify(winningCombo);
+    var stringifiedWin = JSON.stringify(fishPosition)
+
+    if (stringifiedWinningCombo.includes(stringifiedWin)) {
       return "fish win"
     } else if (fishPosition.length < 4){
       return
@@ -116,18 +119,26 @@ draw() {
   var catStatus = this.catStatus();
 
   if (fishStatus === "fish lose" && catStatus === "cat lose") {
-    console.log("draw")
+   return "draw"
   }
 }
 
-catWin(playerOne) {
-  this.playerOne.wins += 1
-}
+// catWin() {
+//   this.playerOne.wins += 1
+//   this.playerTwoCounter += 1
+//
+// }
+//
+// fishWin() {
+//   var fishWon = fishStatus()
+//   if (fishWon === "fish win")
+//   this.playerTwo.wins += 1
+//   this.playerTwoCounter += 1
+// }
 
-fishWin(playerTwo) {
-  this.playerTwo.wins += 1
-}
 resetGame(){
   this.gameBoard = gameArray.fill(null);
 }
+
+
 }

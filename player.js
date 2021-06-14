@@ -8,20 +8,21 @@ class Player {
 
   saveWinsToStorage() {
   if (this.playerNumber === 'one') {
-    localStorage.setItem('player1 wins', JSON.stringify(this.wins))
+    localStorage.setItem('player1 wins', JSON.stringify(game.playerOne.wins))
   } else if (this.playerNumber === 'two') {
-    localStorage.setItem('player2 wins', JSON.stringify(this.wins))
+    localStorage.setItem('player2 wins', JSON.stringify(game.playerTwo.wins))
   }
 }
 
+retrieveWinsFromStorage() {
+   if (this.playerNumber === 'one') {
+     playerOne.wins = (JSON.parse(localStorage.getItem('player1 wins')) || 0)
+   } else if (this.playerNumber === 'two') {
+     playerTwo.wins = (JSON.parse(localStorage.getItem('player2 wins')) || 0)
+   }
+ }
 
 
 
-  getWinsFromStorage() {
-    var parsedLocalStorage = JSON.parse(localStorage.getItem('gameWins'));
-    parsedLocalStorage.push(wins);
-    //pushing wins from parsed local storage to wins array in main
-    var saved = JSON.stringify(parsedLocalStorage)
-  }
 
 }

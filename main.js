@@ -20,7 +20,16 @@ var eight = document.getElementById('8')
 
 
 gameBoard.addEventListener('click', playGame)
-window.addEventListener('load', showPlayer)
+window.addEventListener('load', functionsOnLoad)
+
+
+function functionsOnLoad() {
+game.playerOne.retrieveWinsFromStorage()
+game.playerTwo.retrieveWinsFromStorage()
+playerOne.innerText = `${playerOne.wins}`
+playerTwo.innerText = `${playerTwo.wins}`
+showPlayer()
+}
 
 function showPlayer() {
   game.nextTurn()
@@ -34,19 +43,21 @@ function playGame(){
 
   whosTurn.innerText = `It's ${game.turn}'s Turn`
   game.nextTurn()
-
+  // game.playerOne.retrieveWinsFromStorage()
+  // game.playerTwo.retrieveWinsFromStorage()
 
     if (event.target.id === '0'){
      zero.innerText = `${game.turn}`
      game.takeTurn(0)
      game.nextTurn()
-     console.log(game.catPosition())
-     console.log(game.fishPosition())
+     game.catPosition()
+     game.fishPosition()
      console.log(game.catStatus())
      console.log(game.fishStatus())
      catWins()
      fishWins()
      game.draw()
+     noWinners()
    } if (event.target.id === '1'){
     one.innerText = `${game.turn}`
     game.takeTurn(1)
@@ -59,6 +70,7 @@ function playGame(){
     catWins()
     fishWins()
     game.draw()
+    noWinners()
   } if (event.target.id === '2'){
    two.innerText = `${game.turn}`
    game.takeTurn(2)
@@ -70,7 +82,8 @@ function playGame(){
    console.log(game.fishStatus())
    catWins()
    fishWins()
-   console.log(game.draw())
+   game.draw()
+   noWinners()
   } if (event.target.id === '3'){
    three.innerText = `${game.turn}`
    game.takeTurn(3)
@@ -82,7 +95,8 @@ function playGame(){
    console.log(game.fishStatus())
    catWins()
    fishWins()
-   console.log(game.draw())
+   game.draw()
+   noWinners()
   } if (event.target.id === '4'){
    four.innerText = `${game.turn}`
    game.takeTurn(4)
@@ -94,7 +108,8 @@ function playGame(){
    console.log(game.fishStatus())
    catWins()
    fishWins()
-   console.log(game.draw())
+   game.draw()
+   noWinners()
   } if (event.target.id === '5'){
    five.innerText = `${game.turn}`
    game.takeTurn(5)
@@ -106,7 +121,8 @@ function playGame(){
    console.log(game.fishStatus())
    catWins()
    fishWins()
-   console.log(game.draw())
+   game.draw()
+   noWinners()
   } if (event.target.id === '6'){
    six.innerText = `${game.turn}`
    game.takeTurn(6)
@@ -118,7 +134,8 @@ function playGame(){
    console.log(game.fishStatus())
    catWins()
    fishWins()
-    console.log(game.draw())
+   game.draw()
+    noWinners()
   } if (event.target.id === '7'){
    seven.innerText = `${game.turn}`
    game.takeTurn(7)
@@ -130,7 +147,9 @@ function playGame(){
    console.log(game.fishStatus())
    catWins()
    fishWins()
-    game.draw()
+   game.draw()
+  noWinners()
+
   } if (event.target.id === '8'){
    eight.innerText = `${game.turn}`
    game.takeTurn(8)
@@ -142,28 +161,66 @@ function playGame(){
    console.log(game.fishStatus())
    catWins()
    fishWins()
-  console.log(game.draw())
+   game.draw()
+  noWinners()
+
   }
 }
 
 function catWins(){
   catWinner = game.catStatus()
   if (catWinner === "cat win") {
-    playerOne.innerText += `${game.playerOneCounter}`
+    game.playerOne.wins++
+    game.playerOneCounter++
     game.playerOne.saveWinsToStorage()
-
+    game.playerOne.retrieveWinsFromStorage()
+    playerOne.innerText = `${playerOne.wins}`
+    whosTurn.innerText = '🐈‍⬛ Wins!'
+    clearBoard();
+    } else {
+      return
   }
 }
 
 function fishWins(){
   fishWinner = game.fishStatus()
-  if (fishWinner === "fish win")
-  playerTwo.innerText += `${game.playerTwoCounter}`
+  if (fishWinner === "fish win"){
+  game.playerTwo.wins++
+  game.playerTwoCounter++
   game.playerTwo.saveWinsToStorage()
+  game.playerTwo.retrieveWinsFromStorage()
+  playerTwo.innerText = `${playerTwo.wins}`
+  whosTurn.innerText = '🍣 Wins!'
+  clearBoard();
+  } else {
+    return
+  }
+}
+
+function noWinners(){
+  var draw = game.draw()
+  if (draw === 'draw') {
+  whosTurn.innerText = 'Draw, no winner!'
+  clearBoard()
+  } else {
+    return
+  }
 }
 
 function clearBoard() {
-  window.setTimeout(resetGame, 2 * 1000);
-  game.reset();
-  
+  window.setTimeout(removeTokens, 2000);
+  game.resetGame();
+  window.setTimeout(showPlayer, 3000);
+}
+
+function removeTokens() {
+  zero.innerText = " "
+  one.innerText = " "
+  two.innerText = " "
+  three.innerText = " "
+  four.innerText = " "
+  five.innerText = " "
+  six.innerText = " "
+  seven.innerText = " "
+  eight.innerText = " "
 }
