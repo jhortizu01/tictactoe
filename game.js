@@ -6,20 +6,13 @@ class Game {
     this.playerOne = new Player("one", "🐈‍⬛");
     this.playerTwo = new Player("two", "🍣");
     this.turn = this.playerOne.gamePiece
-    console.log(this.gameBoard)
-
   }
 
   takeTurn(i) {
-    console.log(this.gameBoard[i], !this.gameBoard[i])
     if (!this.gameBoard[i]) {
       this.gameBoard[i] = this.turn;
-
       this.nextTurn();;
     }
-    // this.gameBoard[i] = this.turn;
-    //
-    // this.nextTurn();
   }
 
 
@@ -32,20 +25,20 @@ class Game {
   }
 
   catStatus() {
-  var winningCombo = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ]
+    var winningCombo = [
+     [0, 1, 2],
+     [3, 4, 5],
+     [6, 7, 8],
+     [0, 3, 6],
+     [1, 4, 7],
+     [2, 5, 8],
+     [0, 4, 8],
+     [2, 4, 6]
+    ]
 
-  var catPosition = this.catPosition();
-  var stringifiedWinningCombo = JSON.stringify(winningCombo);
-  var stringifiedWin = JSON.stringify(catPosition)
+    var catPosition = this.catPosition();
+    var stringifiedWinningCombo = JSON.stringify(winningCombo);
+    var stringifiedWin = JSON.stringify(catPosition)
 
     if (stringifiedWinningCombo.includes(stringifiedWin)){
       return "cat win"
@@ -54,30 +47,21 @@ class Game {
     } else {
       return "cat lose"
     }
-
   }
 
 
-fishStatus() {
- var winningCombo = [
-   [0, 1, 2],
-   [3, 4, 5],
-   [6, 7, 8],
-   [0, 3, 6],
-   [1, 4, 7],
-   [2, 5, 8],
-   [0, 4, 8],
-   [2, 4, 6]
- ]
+  fishStatus() {
+   var winningCombo = [
+     [0, 1, 2],
+     [3, 4, 5],
+     [6, 7, 8],
+     [0, 3, 6],
+     [1, 4, 7],
+     [2, 5, 8],
+     [0, 4, 8],
+     [2, 4, 6]
+    ]
 
-//  if ( this.fishPosition.includes(this.winningCombo[i][0]) || this.fishPosition.includes(this.winningCombo[i][1]) || this.fishPosition.includes(this.winningCombo[i][2]) ) {
-//
-// }
-
-  // var stringifiedWinningCombo = JSON.stringify(winningCombo);
-  // var stringifiedWin = JSON.stringify(fishPosition)
-
-  for (var i = 0; i < winningCombo.length; i++) {
     var fishPosition = this.fishPosition();
     var stringifiedWinningCombo = JSON.stringify(winningCombo);
     var stringifiedWin = JSON.stringify(fishPosition)
@@ -90,57 +74,40 @@ fishStatus() {
       return "fish lose"
     }
   }
-}
 
-catPosition() {
-  var whereOnSquare = [];
-  var gameArray = this.gameBoard
-  var element = this.playerOne.gamePiece;
-  var idx = gameArray.indexOf(this.playerOne.gamePiece);
-  while (idx != -1) {
-    whereOnSquare.push(idx);
-    idx = gameArray.indexOf(element, idx + 1);
+  catPosition() {
+    var whereOnSquare = [];
+    var gameArray = this.gameBoard
+    var element = this.playerOne.gamePiece;
+    var idx = gameArray.indexOf(this.playerOne.gamePiece);
+    while (idx != -1) {
+      whereOnSquare.push(idx);
+      idx = gameArray.indexOf(element, idx + 1);
+    }
+    return whereOnSquare
   }
-  return whereOnSquare
-}
 
-fishPosition() {
-  var whereOnSquare = [];
-  var gameArray = this.gameBoard
-  var element = '🍣';
-  var idx = gameArray.indexOf('🍣');
-  while (idx != -1) {
-    whereOnSquare.push(idx);
-    idx = gameArray.indexOf(element, idx + 1);
+  fishPosition() {
+    var whereOnSquare = [];
+    var gameArray = this.gameBoard
+    var element = '🍣';
+    var idx = gameArray.indexOf('🍣');
+    while (idx != -1) {
+      whereOnSquare.push(idx);
+      idx = gameArray.indexOf(element, idx + 1);
+    }
+    return whereOnSquare
   }
-  return whereOnSquare
-}
 
-draw() {
-  var fishStatus = this.fishStatus();
-  var catStatus = this.catStatus();
-
-  if (fishStatus === "fish lose" && catStatus === "cat lose") {
-   return "draw"
+  draw() {
+    var fishStatus = this.fishStatus();
+    var catStatus = this.catStatus();
+    if (fishStatus === "fish lose" && catStatus === "cat lose") {
+     return "draw"
+    }
   }
-}
 
-// catWin() {
-//   this.playerOne.wins += 1
-//   this.playerTwoCounter += 1
-//
-// }
-//
-// fishWin() {
-//   var fishWon = fishStatus()
-//   if (fishWon === "fish win")
-//   this.playerTwo.wins += 1
-//   this.playerTwoCounter += 1
-// }
-
-resetGame(){
-  this.gameBoard = gameArray.fill(null);
-}
-
-
+  resetGame(){
+    this.gameBoard = gameArray.fill(null);
+  }
 }
