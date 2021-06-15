@@ -50,18 +50,19 @@ font-size: 70px;
 .game-title {
   height: 200px;
 }
-  .game-board {
-    border: solid black;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-items: auto;
-    align-content: start;
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-  }
+
+.game-board {
+  border: solid black;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: auto;
+  align-content: start;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+}
 
 
 .game-square-one,
@@ -77,23 +78,17 @@ font-size: 70px;
   pointer-events: auto;
 }
 
-
-.game-square-one{
-  border-right: solid white;
+.game-square-one,
+.game-square-two {
   border-bottom: solid white;
 
 }
 
-.game-square-two{
-  border-bottom: solid white;
-
-}
-
-.game-square-three{
+.game-square-one,
+.game-square-three {
   border-right: solid white;
 
 }
-
 
 .player {
   display: flex;
