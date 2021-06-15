@@ -1,6 +1,8 @@
 
+// 🌍 global variables 🌍
 var game = new Game();
 
+//❓query selectors ❓
 var gameBoard = document.getElementById('gameBoard')
 var whosTurn = document.getElementById('whosTurn')
 var playerOne = document.getElementById('playerOne')
@@ -16,10 +18,11 @@ var seven = document.getElementById('7')
 var eight = document.getElementById('8')
 var squares = [zero, one, two, three, four, five, six, seven, eight]
 
-
+//👂🏽 Event Listeners 👂🏽
 gameBoard.addEventListener('click', playGame)
 window.addEventListener('load', functionsOnLoad)
 
+// Functions
 
 function functionsOnLoad() {
   getWinsFromStorage();

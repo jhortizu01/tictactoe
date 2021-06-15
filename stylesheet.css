@@ -1,22 +1,18 @@
 
 html {
-  border: solid black;
   margin: 0px;
   padding: 0px;
 }
 
 body {
-
-  border: solid black;
   display: flex;
-  height: 98vh;
+  height: 100vh;
   margin: 0px;
   font-family: 'Indie Flower', cursive;
   color: white;
   }
 
 section {
-  border: solid black;
   order: : 3px solid black;
   display: flex;
   justify-content: center;
@@ -25,7 +21,6 @@ section {
 }
 
 main {
-border: solid black;
   display: flex;
   flex-direction: column;
   justify-content: column;
@@ -43,16 +38,23 @@ h2 {
 }
 
 h3 {
-color:  #13A7D7;
+color: white;
+background-color: #13A7D7;
+border-radius: 20px;
 font-size: 70px;
+padding-left: 20px;
+padding-right: 20px;
+margin-top: 20px;
 }
 
 .game-title {
+  display: flex;
   height: 200px;
+  font-size: 55px;
+
 }
 
 .game-board {
-  border: solid black;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -78,17 +80,24 @@ font-size: 70px;
   pointer-events: auto;
 }
 
-.game-square-one,
-.game-square-two {
+
+.game-square-one {
+  border-right: solid white;
   border-bottom: solid white;
 
 }
 
 .game-square-one,
+.game-square-two {
+  border-bottom: solid white;
+
+}
+.game-square-one,
 .game-square-three {
   border-right: solid white;
 
 }
+
 
 .player {
   display: flex;
