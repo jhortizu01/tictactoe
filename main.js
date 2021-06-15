@@ -1,6 +1,4 @@
 
-//var wins = [];
-
 var game = new Game();
 
 var gameBoard = document.getElementById('gameBoard')
@@ -16,7 +14,7 @@ var five = document.getElementById('5')
 var six = document.getElementById('6')
 var seven = document.getElementById('7')
 var eight = document.getElementById('8')
-
+var squares = [zero, one, two, three, four, five, six, seven, eight]
 
 
 gameBoard.addEventListener('click', playGame)
@@ -24,186 +22,54 @@ window.addEventListener('load', functionsOnLoad)
 
 
 function functionsOnLoad() {
-game.playerOne.retrieveWinsFromStorage()
-game.playerTwo.retrieveWinsFromStorage()
-playerOne.innerText = `${playerOne.wins}`
-playerTwo.innerText = `${playerTwo.wins}`
-// game.playerOne.saveWinsToStorage()
-// game.playerTwo.saveWinsToStorage()
-
-showPlayer()
+  getWinsFromStorage();
+  playerWinnerInnerText();
+  showPlayer();
 }
 
-function showPlayer() {
-  game.nextTurn()
-  whosTurn.innerText = `${game.turn} get's to start!`
-  game.nextTurn()
-
-}
-
-
-function playGame(){
-
-  whosTurn.innerText = `It's ${game.turn}'s Turn`
-  game.nextTurn()
-  // game.playerOne.retrieveWinsFromStorage()
-  // game.playerTwo.retrieveWinsFromStorage()
-
-    if (event.target.id === '0'){
-     zero.innerText = `${game.turn}`
-     game.takeTurn(0)
-     game.nextTurn()
-     game.catPosition()
-     game.fishPosition()
-     console.log(game.catStatus())
-     console.log(game.fishStatus())
-     catWins()
-     fishWins()
-     game.draw()
-     noWinners()
-   } if (event.target.id === '1'){
-    one.innerText = `${game.turn}`
-    game.takeTurn(1)
-     game.nextTurn()
-    console.log(game.turn)
-    console.log(game.catPosition())
-    console.log(game.fishPosition())
-    console.log(game.catStatus())
-    console.log(game.fishStatus())
-    catWins()
-    fishWins()
-    game.draw()
-    noWinners()
-  } if (event.target.id === '2'){
-   two.innerText = `${game.turn}`
-   game.takeTurn(2)
-   game.nextTurn()
-   console.log(game.turn)
-   console.log(game.catPosition())
-   console.log(game.fishPosition())
-   console.log(game.catStatus())
-   console.log(game.fishStatus())
-   catWins()
-   fishWins()
-   game.draw()
-   noWinners()
-  } if (event.target.id === '3'){
-   three.innerText = `${game.turn}`
-   game.takeTurn(3)
-    game.nextTurn()
-   console.log(game.turn)
-   console.log(game.catPosition())
-   console.log(game.fishPosition())
-   console.log(game.catStatus())
-   console.log(game.fishStatus())
-   catWins()
-   fishWins()
-   game.draw()
-   noWinners()
-  } if (event.target.id === '4'){
-   four.innerText = `${game.turn}`
-   game.takeTurn(4)
-    game.nextTurn()
-   console.log(game.turn)
-   console.log(game.catPosition())
-   console.log(game.fishPosition())
-   console.log(game.catStatus())
-   console.log(game.fishStatus())
-   catWins()
-   fishWins()
-   game.draw()
-   noWinners()
-  } if (event.target.id === '5'){
-   five.innerText = `${game.turn}`
-   game.takeTurn(5)
-    game.nextTurn()
-   console.log(game.turn)
-   console.log(game.catPosition())
-   console.log(game.fishPosition())
-   console.log(game.catStatus())
-   console.log(game.fishStatus())
-   catWins()
-   fishWins()
-   game.draw()
-   noWinners()
-  } if (event.target.id === '6'){
-   six.innerText = `${game.turn}`
-   game.takeTurn(6)
-   game.nextTurn()
-   console.log(game.turn)
-   console.log(game.catPosition())
-   console.log(game.fishPosition())
-   console.log(game.catStatus())
-   console.log(game.fishStatus())
-   catWins()
-   fishWins()
-   game.draw()
-    noWinners()
-  } if (event.target.id === '7'){
-   seven.innerText = `${game.turn}`
-   game.takeTurn(7)
-    game.nextTurn()
-   console.log(game.turn)
-   console.log(game.catPosition())
-   console.log(game.fishPosition())
-   console.log(game.catStatus())
-   console.log(game.fishStatus())
-   catWins()
-   fishWins()
-   game.draw()
-  noWinners()
-
-  } if (event.target.id === '8'){
-   eight.innerText = `${game.turn}`
-   game.takeTurn(8)
-   game.nextTurn()
-   console.log(game.turn)
-   console.log(game.catPosition())
-   console.log(game.fishPosition())
-   console.log(game.catStatus())
-   console.log(game.fishStatus())
-   catWins()
-   fishWins()
-   game.draw()
-  noWinners()
-
+function playGame() {
+  if (!game.gameBoard[event.target.id]){
+    whosTurn.innerText = `It's ${game.turn}'s Turn`;
+    game.nextTurn();
+    game.takeTurn(event.target.id);
+    event.target.innerText = `${game.gameBoard[event.target.id]}`;
+    game.nextTurn();
+    playerPosition();
+    playerStatus();
+    playerWins();
+    itsADraw();
   }
 }
 
-function catWins(){
-  catWinner = game.catStatus()
-  if (catWinner === "cat win") {
-    game.playerOne.wins++
-    game.playerOne.saveWinsToStorage()
-   game.playerOne.retrieveWinsFromStorage()
-    playerOne.innerText = `${playerOne.wins}`
-    whosTurn.innerText = '🐈‍⬛ Wins!'
+function catWins() {
+  catWinner = game.catStatus();
+  if (catWinner === 'cat win') {
+    game.playerOne.wins++;
+    playerOneStorage();
+    playerOneWinningText();
     clearBoard();
-    } else {
-      return
+  } else {
+    return
   }
 }
 
-function fishWins(){
-  fishWinner = game.fishStatus()
-  if (fishWinner === "fish win"){
-  game.playerTwo.wins++
-  game.playerTwoCounter++
-  game.playerTwo.saveWinsToStorage()
-  game.playerTwo.retrieveWinsFromStorage()
-  playerTwo.innerText = `${playerTwo.wins}`
-  whosTurn.innerText = '🍣 Wins!'
-  clearBoard();
+function fishWins() {
+  fishWinner = game.fishStatus();
+  if (fishWinner === 'fish win'){
+    game.playerTwo.wins++;
+    playerTwoStorage();
+    playerTwoWinningText();
+    clearBoard();
   } else {
     return
   }
 }
 
 function noWinners(){
-  var draw = game.draw()
+  var draw = game.draw();
   if (draw === 'draw') {
-  whosTurn.innerText = 'Draw, no winner!'
-  clearBoard()
+    whosTurn.innerText = 'Draw, no winner!';
+    clearBoard();
   } else {
     return
   }
@@ -216,13 +82,64 @@ function clearBoard() {
 }
 
 function removeTokens() {
-  zero.innerText = " "
-  one.innerText = " "
-  two.innerText = " "
-  three.innerText = " "
-  four.innerText = " "
-  five.innerText = " "
-  six.innerText = " "
-  seven.innerText = " "
-  eight.innerText = " "
+  for (var i = 0; i < squares.length; i++){
+    squares[i].innerText = ' ';
+  }
+}
+
+function showPlayer() {
+  game.nextTurn();
+  whosTurn.innerText = `${game.turn} get's to start!`;
+  game.nextTurn();
+}
+
+function getWinsFromStorage() {
+  game.playerOne.retrieveWinsFromStorage();
+  game.playerTwo.retrieveWinsFromStorage();
+}
+
+function playerWinnerInnerText() {
+  playerOne.innerText = `${playerOne.wins}`;
+  playerTwo.innerText = `${playerTwo.wins}`;
+}
+
+
+function playerWins() {
+  catWins();
+  fishWins();
+}
+
+function itsADraw() {
+  game.draw();
+  noWinners();
+}
+
+function playerPosition() {
+  game.catPosition();
+  game.fishPosition();
+}
+
+function playerStatus() {
+  game.catStatus();
+  game.fishStatus();
+}
+
+function playerOneStorage() {
+  game.playerOne.saveWinsToStorage();
+  game.playerOne.retrieveWinsFromStorage()
+}
+
+function playerOneWinningText() {
+  playerOne.innerText = `${playerOne.wins}`;
+  whosTurn.innerText = '🐈‍⬛ Wins!';
+}
+
+function playerTwoStorage() {
+  game.playerTwo.saveWinsToStorage();
+  game.playerTwo.retrieveWinsFromStorage();
+}
+
+function playerTwoWinningText() {
+  playerTwo.innerText = `${playerTwo.wins}`;
+  whosTurn.innerText = '🍣 Wins!';
 }

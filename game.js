@@ -6,16 +6,20 @@ class Game {
     this.playerOne = new Player("one", "🐈‍⬛");
     this.playerTwo = new Player("two", "🍣");
     this.turn = this.playerOne.gamePiece
+    console.log(this.gameBoard)
 
   }
 
   takeTurn(i) {
-    if (this.gameBoard[i] === "") {
-      return;
-    }
-    this.gameBoard[i] = this.turn;
+    console.log(this.gameBoard[i], !this.gameBoard[i])
+    if (!this.gameBoard[i]) {
+      this.gameBoard[i] = this.turn;
 
-    this.nextTurn();
+      this.nextTurn();;
+    }
+    // this.gameBoard[i] = this.turn;
+    //
+    // this.nextTurn();
   }
 
 
@@ -70,11 +74,11 @@ fishStatus() {
 //
 // }
 
-  var fishPosition = this.fishPosition();
   // var stringifiedWinningCombo = JSON.stringify(winningCombo);
   // var stringifiedWin = JSON.stringify(fishPosition)
 
   for (var i = 0; i < winningCombo.length; i++) {
+    var fishPosition = this.fishPosition();
     var stringifiedWinningCombo = JSON.stringify(winningCombo);
     var stringifiedWin = JSON.stringify(fishPosition)
 
